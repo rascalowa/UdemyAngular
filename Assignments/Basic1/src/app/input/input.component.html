@@ -1,0 +1,16 @@
+<input
+  type="text"
+  class="form-conrtrol"
+  (input)="onUpdate($event)"
+  [(ngModel)]="username"
+/>
+<p>Your username is {{ username }}</p>
+
+<button
+  type="button"
+  class="btn btn-info"
+  [disabled]="emptyString"
+  (click)="onButtonClick($event)"
+>
+  Clean
+</button>
