@@ -1,4 +1,5 @@
 <hr />
+<p>Assignment 3.</p>
 <div style="display: flex;">
   <button type="button" class="btn btn-dark" (click)="onClick($event)">
     Display Details
@@ -6,9 +7,9 @@
   <p *ngIf="many % 2 !== 0">Secret password: tuna</p>
 </div>
 <p
-  *ngFor="let number of clickedArray"
-  [ngStyle]="{ backgroundColor: number > 4 ? 'blue' : 'white' }"
-  [ngClass]="{ afterFive: number > 4 }"
+  *ngFor="let number of clickedArray; let i = index"
+  [ngStyle]="{ backgroundColor: i > 3 ? 'blue' : 'white' }"
+  [ngClass]="{ afterFive: i > 3 }"
 >
-  You clicked so many times!
+  {{ number }}}
 </p>

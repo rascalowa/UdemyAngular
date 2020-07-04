@@ -11,7 +11,8 @@ export class DirectiveButtonComponent {
 
   onClick(event: Event) {
     this.many = this.many + 1;
-    this.clickedArray.push(this.many);
+    // this.clickedArray.push(this.many);
+    this.clickedArray.push(new Date());
     console.log(this.clickedArray);
   }
 
