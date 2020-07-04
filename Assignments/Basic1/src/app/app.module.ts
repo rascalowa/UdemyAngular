@@ -1,3 +1,4 @@
+import { DirectiveButtonComponent } from './directiveButton/directiveButton.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { InputComponent } from './input/input.component';
     SuccessComponent,
     AlertsComponent,
     InputComponent,
+    DirectiveButtonComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],

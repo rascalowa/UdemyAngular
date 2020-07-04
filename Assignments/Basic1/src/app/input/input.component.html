@@ -1,10 +1,10 @@
+<p>Username</p>
 <input
   type="text"
   class="form-conrtrol"
   (input)="onUpdate($event)"
   [(ngModel)]="username"
 />
-<p>Your username is {{ username }}</p>
 
 <button
   type="button"
@@ -14,3 +14,6 @@
 >
   Clean
 </button>
+
+<hr />
+<p>Your username is {{ username }}</p>
