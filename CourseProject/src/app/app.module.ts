@@ -1,3 +1,4 @@
+import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeBookComponent } from './recipe-book/recipe-book.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,7 @@ import { RecipeListComponent } from './recipe-book/recipe-list/recipe-list.compo
     RecipeDetailComponent,
     RecipeItemComponent,
     RecipeListComponent,
+    DropdownDirective
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],
