@@ -1,3 +1,4 @@
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeBookComponent } from './recipe-book/recipe-book.component';
@@ -25,7 +26,7 @@ import { RecipeListComponent } from './recipe-book/recipe-list/recipe-list.compo
     DropdownDirective
   ],
   imports: [BrowserModule, FormsModule],
-  providers: [],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
