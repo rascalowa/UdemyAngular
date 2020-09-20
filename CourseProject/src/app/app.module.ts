@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { RecipeService } from './recipe-book/recipe.service';
+import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesModule } from './recipe-book/recipes.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
+// import { RecipesModule } from './recipes/recipes.module'; // LazyLoading
+// import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 
@@ -23,8 +23,8 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    RecipesModule,
-    ShoppingListModule,
+    // RecipesModule,
+    // ShoppingListModule,
     AuthModule,
     SharedModule
   ],
