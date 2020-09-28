@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RecipeService } from './recipes/recipe.service';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 // import { RecipesModule } from './recipes/recipes.module'; // LazyLoading
@@ -32,7 +31,6 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     SharedModule
   ],
   providers: [
-    ShoppingListService,
     RecipeService,
     {
       provide: HTTP_INTERCEPTORS,
