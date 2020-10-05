@@ -7,22 +7,14 @@ export interface State {
   editedIngredientIndex: number;
 }
 
-export interface AppState {
-  shoppingList: State;
-}
-
 const initialState: State = {
-  ingredients: [
-    new Ingredient('Apples', 5),
-    new Ingredient('Tomatoes', 10),
-  ],
+  ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
   editedIngredient: null,
   editedIngredientIndex: -1
 };
 
 export function shoppingListReducer(
   state: State = initialState,
-  //we can use our newly created union type: instead of .AddIngredient we have .ShoppingListActions(includes AddIngredient and AddIngredients)
   action: ShoppingListActions.ShoppingListActions
 ) {
   switch (action.type) {
@@ -38,13 +30,13 @@ export function shoppingListReducer(
       };
     case ShoppingListActions.UPDATE_INGREDIENT:
       const ingredient = state.ingredients[state.editedIngredientIndex];
-      //we have to add a data immutably here!
       const updatedIngredient = {
         ...ingredient,
         ...action.payload
       };
       const updatedIngredients = [...state.ingredients];
       updatedIngredients[state.editedIngredientIndex] = updatedIngredient;
+
       return {
         ...state,
         ingredients: updatedIngredients,
@@ -76,3 +68,4 @@ export function shoppingListReducer(
       return state;
   }
 }
+

@@ -1,7 +1,11 @@
-import { tokenName } from '@angular/compiler'
-
 export class User {
-  constructor(public email: string, public id: string, private _token: string, private _tokenExpirationDate: Date) { }
+  constructor(
+    public email: string,
+    public id: string,
+    private _token: string,
+    private _tokenExpirationDate: Date
+  ) { }
+
 
   //getter is a special type of property: we can write code that runs when we try to access that property. User can't overwrite getter(thats what is setter for)
   get token() {
@@ -12,6 +16,6 @@ export class User {
     // otherwise return token
     return this._token;
   }
-
 }
+
 

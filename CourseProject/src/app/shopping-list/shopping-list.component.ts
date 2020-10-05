@@ -1,36 +1,36 @@
-import { Ingredient } from './../shared/ingredient.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromShoppingList from './store/shopping-list.reducer';
+
+import { Ingredient } from '../shared/ingredient.model';
+import { LoggingService } from '../logging.service';
 import * as ShoppingListActions from './store/shopping-list.actions';
+import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css'],
+  styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  //change type to observable
-  //generic type which will in the end yield an object with an ingredients[] which will the hold an array of ingredients (the same data format of our store!)
   ingredients: Observable<{ ingredients: Ingredient[] }>;
-  //that will break our template(we do loop through our ingredients in html)
   private subscription: Subscription;
 
   constructor(
-    private store: Store<fromShoppingList.AppState>
-    //with that store injected we can use it
+    private loggingService: LoggingService,
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit() {
-    this.ingredients = this.store.select('shoppingList')
+    this.ingredients = this.store.select('shoppingList');
     // this.ingredients = this.slService.getIngredients();
-    // this.subscription = this.slService.ingredientsChanged
-    //   .subscribe(
-    //     (ingredients: Ingredient[]) => {
-    //       this.ingredients = ingredients;
-    //     }
-    //   );
+    // this.subscription = this.slService.ingredientsChanged.subscribe(
+    //   (ingredients: Ingredient[]) => {
+    //     this.ingredients = ingredients;
+    //   }
+    // );
+
+    this.loggingService.printLog('Hello from ShoppingListComponent ngOnInit!');
   }
 
   onEditItem(index: number) {
