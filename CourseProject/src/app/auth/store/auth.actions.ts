@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 //create couple of identifiers for different actions:
-export const LOGIN_START = '[Auth] Login Start'
+export const LOGIN_START = '[Auth] Login Start';
 export const AUTHENTICATE_SUCCESS = '[Auth] Login';
 export const AUTHENTICATE_FAIL = '[Auth] Login Fail';
 export const SIGNUP_START = '[Auth] Signup Start';
@@ -21,8 +21,6 @@ export class AuthenticateSuccess implements Action {
     }
   ) { }
 }
-//route 1 : Create user before we dispatch, then just attach finished user object to the action as a payload
-//route 2 : Attach 4 pieces of information as a payload(email, userId, token, expirationDate from User in AuthService) and create the user in the reducer. This way moves more logic into reducer
 
 export class Logout implements Action {
   readonly type = LOGOUT;

@@ -30,7 +30,6 @@ export function authReducer(
       return {
         ...state,
         authError: null,
-        //first user: user property in state slice(initialState), second user: constant above
         user: user,
         loading: false
       };

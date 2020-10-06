@@ -20,9 +20,6 @@ export interface AuthResponseData {
   registered?: boolean;
 }
 
-//the same code needed for login and signup(Auth and Error handling)
-//this observable should hold my login action(not start login- just login - at this point of time i have successfully login user) and i want to reflect that in my app by reaching that login reducer code- we need to dispatch that login action
-//we need to create an observable with auth and catch error inside of map, but map automatically wraps what you return into an observable - no need to use OF
 const handleAuthentication = (
   expiresIn: number,
   email: string,
@@ -32,7 +29,6 @@ const handleAuthentication = (
   const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
   const user = new User(email, userId, token, expirationDate);
   localStorage.setItem('userData', JSON.stringify(user));
-  //INSTEAD of this.store.dispatch(new AuthActions.AuthenticateSuccess({...}))
   return new AuthActions.AuthenticateSuccess({
     email: email,
     userId: userId,
@@ -40,11 +36,8 @@ const handleAuthentication = (
     expirationDate: expirationDate
   });
 };
-
 // return NON ERROR observable, so overall observable stream does not die!!!!
-//of - utility function for creating a new observable - one without error
-//of should return new action, we don't need to call dispatch  - its also partly done by adding Effects decorator(whole chain result will automatically be treated as an action - will be dispatched)
-//We have no action for the error case - for now just return empty observable
+
 const handleError = (errorRes: any) => {
   let errorMessage = 'An unknown error occurred!';
   if (!errorRes.error || !errorRes.error.error) {
@@ -115,7 +108,7 @@ export class AuthEffects {
     switchMap((authData: AuthActions.LoginStart) => {
       return this.http
         .post<AuthResponseData>(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
           environment.firebaseAPIKey,
           {
             email: authData.payload.email,

@@ -48,7 +48,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    //extra validation step in case user changes our disabled button through browser dev tool
     if (!form.valid) {
       return;
     }
@@ -57,16 +56,14 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     if (this.isLoginMode) {
       // authObs = this.authService.login(email, password);
-      //IMPORTANT NOTE! dispatch here does not give us an observable, that why I can't store this in authObs, we are not notified once this is done, resetting, loading and navigating away won't work for now
       this.store.dispatch(
         new AuthActions.LoginStart({ email: email, password: password })
       );
-      // } else {
-      //   this.store.dispatch(
-      //     new AuthActions.SignupStart({ email: email, password: password })
-      //   );
+    } else {
+      this.store.dispatch(
+        new AuthActions.SignupStart({ email: email, password: password })
+      );
     }
-
     form.reset();
   }
 
