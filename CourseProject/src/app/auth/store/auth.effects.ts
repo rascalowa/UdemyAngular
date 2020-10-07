@@ -33,7 +33,8 @@ const handleAuthentication = (
     email: email,
     userId: userId,
     token: token,
-    expirationDate: expirationDate
+    expirationDate: expirationDate,
+    redirect: true
   });
 };
 // return NON ERROR observable, so overall observable stream does not die!!!!
@@ -145,9 +146,11 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   authRedirect = this.actions$.pipe(
     ofType(AuthActions.AUTHENTICATE_SUCCESS),
-    tap(() => {
-      //navigate to the root route
-      this.router.navigate(['/']);
+    tap((authSuccessAction: AuthActions.AuthenticateSuccess) => {
+      if (authSuccessAction.payload.redirect) {
+        //navigate to the root route
+        this.router.navigate(['/']);
+      }
     })
   );
 
@@ -186,7 +189,8 @@ export class AuthEffects {
           email: loadedUser.email,
           userId: loadedUser.id,
           token: loadedUser.token,
-          expirationDate: new Date(userData._tokenExpirationDate)
+          expirationDate: new Date(userData._tokenExpirationDate),
+          redirect: false
         });
         // also call autologout - but here we need to calculate remaining time
 

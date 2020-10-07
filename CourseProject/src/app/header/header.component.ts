@@ -3,10 +3,9 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../auth/auth.service';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from './../auth/store/auth.actions';
+import * as RecipesActions from '../recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-header',
@@ -16,11 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private userSub: Subscription;
 
-  constructor(
-    private dataStorageService: DataStorageService,
-    private authService: AuthService,
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   //we need to manage by ourselves - unsubscribe when it is not required anymore
   ngOnInit() {
@@ -38,13 +33,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes();
+    this.store.dispatch(new RecipesActions.StoreRecipes)
   }
 
   onFetchData() {
     //if we are not subscribing to fetch Data in the service (only RETURN), we need to subscribe here. If we don't care about response, we don't have to pass a function
     //this approach helps us in the RESOLVER
-    this.dataStorageService.fetchRecipes().subscribe();
+    // this.dataStorageService.fetchRecipes().subscribe();
+    this.store.dispatch(new RecipesActions.FetchRecipes());
   }
 
   onLogout() {
