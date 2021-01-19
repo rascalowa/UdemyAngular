@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+*.pyc
+node_modules
+.env
+venv
+*.egg-info
+~$*.pptx
